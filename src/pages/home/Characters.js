@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "./characters.module.scss";
 import placeholder from "../../assets/images/travel.jpg";
-import Buttons from "../../components/buttons/Buttons";
 
 const Characters = () => {
   return (
@@ -22,7 +21,7 @@ const Characters = () => {
           </p>
         </div>
         <div className={styles.character_cta}>
-          <Buttons text="Details" />
+          <button>Details</button>
         </div>
       </div>
       <div className={styles.character}>
@@ -41,7 +40,7 @@ const Characters = () => {
           </p>
         </div>
         <div className={styles.character_cta}>
-          <Buttons text="Details" />
+          <button>Details</button>
         </div>
       </div>
       <div className={styles.character}>
@@ -60,7 +59,7 @@ const Characters = () => {
           </p>
         </div>
         <div className={styles.character_cta}>
-          <Buttons text="Details" />
+          <button>Details</button>
         </div>
       </div>
       <div className={styles.character}>
@@ -79,7 +78,7 @@ const Characters = () => {
           </p>
         </div>
         <div className={styles.character_cta}>
-          <Buttons text="Details" />
+          <button>Details</button>
         </div>
       </div>
       <div className={styles.character}>
@@ -98,7 +97,7 @@ const Characters = () => {
           </p>
         </div>
         <div className={styles.character_cta}>
-          <Buttons text="Details" />
+          <button>Details</button>
         </div>
       </div>
       <div className={styles.character}>
@@ -117,7 +116,7 @@ const Characters = () => {
           </p>
         </div>
         <div className={styles.character_cta}>
-          <Buttons text="Details" />
+          <button>Details</button>
         </div>
       </div>
       <div className={styles.character}>
@@ -136,7 +135,7 @@ const Characters = () => {
           </p>
         </div>
         <div className={styles.character_cta}>
-          <Buttons text="Details" />
+          <button>Details</button>
         </div>
       </div>
       <div className={styles.character}>
@@ -155,7 +154,7 @@ const Characters = () => {
           </p>
         </div>
         <div className={styles.character_cta}>
-          <Buttons text="Details" />
+          <button>Details</button>
         </div>
       </div>
       <div className={styles.character}>
@@ -174,7 +173,7 @@ const Characters = () => {
           </p>
         </div>
         <div className={styles.character_cta}>
-          <Buttons text="Details" />
+          <button>Details</button>
         </div>
       </div>
     </div>

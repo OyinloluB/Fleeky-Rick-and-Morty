@@ -29,4 +29,16 @@
   &_cta {
     padding: 10px 30px;
   }
+
+  button {
+    background-color: black;
+    border-radius: 8px;
+    padding: 10px 0;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    border: none;
+  }
 }
