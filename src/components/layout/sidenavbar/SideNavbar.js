@@ -5,7 +5,7 @@ import { searchCharacters } from "../../../redux/characters/characters.actions";
 import styles from "./sidenavbar.module.scss";
 import searchIcon from "../../../assets/images/searchIcon.png";
 
-const SideNavbar = () => {
+const SideNavbar = ({ mobileNavOpen, setMobileNavOpen }) => {
   const dispatch = useDispatch();
   const [searchValue, setSearchValue] = useState("");
 
@@ -18,7 +18,10 @@ const SideNavbar = () => {
   };
 
   return (
-    <div className={styles.sidenavbar}>
+    <div
+      className={styles.sidenavbar}
+      style={{ left: mobileNavOpen && "0" }}
+    >
       <div className={styles.sidenavbar_content}>
         <div className={styles.sidenavbar_inputWrapper}>
           <input
