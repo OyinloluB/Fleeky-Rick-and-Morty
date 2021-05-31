@@ -17,7 +17,7 @@ const Main = () => {
       <TopNavbar />
       {location.pathname === "/" && <SideNavbar />}
       <Route exact path="/" component={Characters} />
-      <Route exact path="/character" component={CharacterDetails} />
+      <Route exact path="/character/:id" component={CharacterDetails} />
 
       <div className={styles.backtotop}>
         <img src={backtotop} alt="Back to top" />

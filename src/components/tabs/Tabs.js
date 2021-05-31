@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./tabs.scss";
 
-const Tabs = () => {
+const Tabs = ({ episodes }) => {
   const [toggleState, setToggleState] = useState(1);
 
   const toggleTab = (index) => {
@@ -11,18 +11,19 @@ const Tabs = () => {
   return (
     <div>
       <div className="tabsWrapper">
-        <button
-          className={toggleState === 1 ? "tabs active-tabs" : "tabs"}
-          onClick={() => toggleTab(1)}
-        >
-          Description
-        </button>
-        <button
-          className={toggleState === 2 ? "tabs active-tabs" : "tabs"}
-          onClick={() => toggleTab(2)}
-        >
-          Attributes
-        </button>
+        {episodes.splice(0, 5).map((episode) => {
+          const value = episode.split("/");
+          console.log(value[value.length - 1]);
+
+          return (
+            <button
+              className={toggleState === 1 ? "tabs active-tabs" : "tabs"}
+              onClick={() => toggleTab(1)}
+            >
+              {episode}
+            </button>
+          );
+        })}
       </div>
 
       <div className="content-tabs">
