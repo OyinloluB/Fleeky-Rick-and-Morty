@@ -26,6 +26,7 @@ const Tabs = ({ episodes }) => {
                 setEpisodeUrl(() => episodeLink);
                 fetchEpisode(episodeUrl);
               }}
+              key={episodeLink}
             >
               Episode{" "}
               {episodeLink.split("/")[episodeLink.split("/").length - 1]}

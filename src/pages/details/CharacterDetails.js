@@ -23,7 +23,7 @@ const CharacterDetails = (props) => {
         <Link to="/">Back</Link>
       </div>
       {characters.map((character) => (
-        <>
+        <div key={character.id}>
           <div className={styles.characterdetails_details}>
             <div className={styles.characterdetails_details_image}>
               <img src={character.image} alt={character.name} />
@@ -61,7 +61,7 @@ const CharacterDetails = (props) => {
               <Tabs episodes={character.episode} />
             </div>
           </div>
-        </>
+        </div>
       ))}
     </div>
   );

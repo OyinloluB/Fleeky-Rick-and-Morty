@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-// import Pagination from "@material-ui/lab/Pagination";
+import Pagination from "@material-ui/lab/Pagination";
 import { fetchCharacters } from "../../redux/characters/characters.actions";
 
 import styles from "./characters.module.scss";
@@ -10,16 +10,17 @@ import { CircularProgress } from "@material-ui/core";
 const Characters = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const { characters, loading } = useSelector((state) => state.character);
+  const { characters, loading, pagination } = useSelector(
+    (state) => state.character
+  );
 
   useEffect(() => {
     dispatch(fetchCharacters());
   }, [dispatch]);
 
-  // const handleChange = (e, value) => {
-  //   value++;
-  //   dispatch(fetchCharacters({ page: value }));
-  // };
+  const handleChange = (e, value) => {
+    dispatch(fetchCharacters({ page: value }));
+  };
 
   return (
     <div className={styles.characters}>
@@ -30,7 +31,7 @@ const Characters = () => {
       ) : (
         <div className={styles.characters_wrapper}>
           {characters.map((character) => (
-            <div className={styles.character}>
+            <div className={styles.character} key={character.id}>
               <div className={styles.character_image}>
                 <img src={character.image} alt="placeholder" />
               </div>
@@ -56,17 +57,11 @@ const Characters = () => {
           ))}
         </div>
       )}
-      {/* {characters?.length && (
+      {characters?.length && (
         <div className={styles.pagination}>
-          <Pagination
-            count={pagination?.count || 0}
-            page={pagination?.pages || 0}
-            variant="outlined"
-            shape="rounded"
-            onChange={handleChange}
-          />
+          <Pagination count={pagination?.count || 0} onChange={handleChange} />
         </div>
-      )} */}
+      )}
     </div>
   );
 };
