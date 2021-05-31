@@ -1,14 +1,13 @@
 import React, { useEffect } from "react";
-// import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCharacterId } from "../../redux/characters/characters.actions";
 
 import styles from "./characterdetails.module.scss";
-import placeholder from "../../assets/images/travel.jpg";
+import backarrow from "../../assets/images/backarrow.png";
 import Tabs from "../../components/tabs/Tabs";
 
 const CharacterDetails = (props) => {
-  // const history = useHistory();
   const dispatch = useDispatch();
   const { characters } = useSelector((state) => state.character);
   const characterId = props.match.params.id;
@@ -19,11 +18,15 @@ const CharacterDetails = (props) => {
 
   return (
     <div className={styles.characterdetails}>
+      <div className={styles.characterdetails_back}>
+        <img src={backarrow} alt="back" />
+        <Link to="/">Back</Link>
+      </div>
       {characters.map((character) => (
         <>
           <div className={styles.characterdetails_details}>
             <div className={styles.characterdetails_details_image}>
-              <img src={placeholder} alt="placeholder" />
+              <img src={character.image} alt={character.name} />
             </div>
             <div>
               <p>

@@ -19,9 +19,11 @@ const Main = () => {
       <Route exact path="/" component={Characters} />
       <Route exact path="/character/:id" component={CharacterDetails} />
 
-      <div className={styles.backtotop}>
-        <img src={backtotop} alt="Back to top" />
-      </div>
+      <a href="#">
+        <div className={styles.backtotop}>
+          <img src={backtotop} alt="Back to top" />
+        </div>
+      </a>
     </div>
   );
 };

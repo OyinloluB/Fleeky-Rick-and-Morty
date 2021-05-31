@@ -1,43 +1,59 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchEpisode } from "../../redux/characters/characters.actions";
+
 import "./tabs.scss";
 
 const Tabs = ({ episodes }) => {
-  const [toggleState, setToggleState] = useState(1);
+  const dispatch = useDispatch();
+  const { episode } = useSelector((state) => state.character);
 
-  const toggleTab = (index) => {
-    setToggleState(index);
+  const [toggleState, setToggleState] = useState(episode.name);
+  const [episodeUrl, setEpisodeUrl] = useState(episodes[0]);
+
+  useEffect(() => {
+    dispatch(fetchEpisode(episodeUrl));
+  }, [dispatch, episodeUrl]);
+
+  const toggleId = (name) => {
+    setToggleState(name);
   };
 
   return (
     <div>
       <div className="tabsWrapper">
-        {episodes.splice(0, 5).map((episode) => {
-          const value = episode.split("/");
-          console.log(value[value.length - 1]);
-
+        {episodes.slice(0, 5).map((episodeLink) => {
           return (
             <button
-              className={toggleState === 1 ? "tabs active-tabs" : "tabs"}
-              onClick={() => toggleTab(1)}
+              className={
+                episode.name === toggleState ? "tabs active-tabs" : "tabs"
+              }
+              onClick={() => {
+                setEpisodeUrl(() => episodeLink);
+                fetchEpisode(episodeUrl);
+              }}
             >
-              {episode}
+              Episode{" "}
+              {episodeLink.split("/")[episodeLink.split("/").length - 1]}
             </button>
           );
         })}
       </div>
 
       <div className="content-tabs">
-        <div
-          className={toggleState === 1 ? "content  active-content" : "content"}
-        >
-          <p>Text</p>
-        </div>
-
-        <div
-          className={toggleState === 2 ? "content  active-content" : "content"}
-        >
-          <h3>Categories</h3>
-          <h3>Business Models</h3>
+        <div>
+          <p>
+            <b>Episode Name:</b> {episode.name}
+          </p>
+          <p>
+            <b>Episode ID:</b> {episode.id}
+          </p>
+          <p>
+            <b>Episode Air Date:</b> {episode.air_date}
+          </p>
+          <p>
+            <b>Episode:</b> {episode.episode}
+          </p>
         </div>
       </div>
     </div>

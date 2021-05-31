@@ -11,10 +11,7 @@
     box-sizing: content-box;
     position: relative;
     outline: none;
-  }
-
-  .tabs:not(:last-child) {
-    border-right: 1px solid rgba(0, 0, 0, 0.274);
+    cursor: pointer;
   }
 
   .active-tabs {
@@ -43,31 +40,5 @@
       line-height: 1.5rem;
       font-size: 16px;
     }
-
-    h3 {
-      margin: 10px 0;
-    }
-
-    input {
-      width: 100%;
-      height: 50px;
-      border: none;
-      cursor: text;
-
-      &::placeholder {
-        line-height: 1.5rem;
-        font-size: 15px;
-        margin: 5px;
-        color: black;
-      }
-
-      &:focus {
-        outline: none;
-      }
-    }
-  }
-
-  .active-content {
-    display: block;
   }
 }

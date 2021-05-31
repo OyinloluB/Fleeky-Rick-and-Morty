@@ -43,14 +43,41 @@ export const searchCharacterFailure = (error) => ({
   payload: error,
 });
 
-export const fetchCharacters = () => {
+export const filterCharacterStart = () => ({
+  type: characterActionTypes.FILTER_CHARACTER_START,
+});
+
+export const filterCharacterSuccess = (character) => ({
+  type: characterActionTypes.FILTER_CHARACTER_SUCCESS,
+  payload: character,
+});
+
+export const filterCharacterFailure = (error) => ({
+  type: characterActionTypes.FILTER_CHARACTER_FAILURE,
+  payload: error,
+});
+
+export const fetchEpisodeStart = () => ({
+  type: characterActionTypes.FETCH_EPISODE_START,
+});
+
+export const fetchEpisodeSuccess = (episode) => ({
+  type: characterActionTypes.FETCH_EPISODE_SUCCESS,
+  payload: episode,
+});
+
+export const fetchEpisodeFailure = (error) => ({
+  type: characterActionTypes.FETCH_EPISODE_FAILURE,
+  payload: error,
+});
+
+export const fetchCharacters = (params = { page: 1 }) => {
   return (dispatch) => {
     return new Promise(async (resolve, reject) => {
       dispatch(fetchCharacterStart());
       try {
-        const response = await axios.get("/character");
+        const response = await axios.get(`/character/?page=${params.page}`);
         const { data } = response;
-        console.log(data);
         dispatch(fetchCharacterSuccess(data));
       } catch (error) {
         dispatch(fetchCharacterFailure(error));
@@ -93,7 +120,6 @@ export const searchCharacters = (search) => {
         const response = await axios.get(`/character/?name=${search}`);
         if (response.status === 200 || response.status === 201) {
           const { data } = response;
-          console.log(data);
           dispatch(searchCharacterSuccess(data));
         } else {
           throw response;
@@ -101,6 +127,52 @@ export const searchCharacters = (search) => {
         resolve();
       } catch (error) {
         dispatch(searchCharacterFailure(error));
+        reject(error);
+      }
+    });
+  };
+};
+
+export const filterCharacters = (filterValue, type) => {
+  return (dispatch) => {
+    return new Promise(async (resolve, reject) => {
+      dispatch(filterCharacterStart());
+      try {
+        const response = await axios.get(
+          `/character/?name=&${type}=${filterValue.toLowerCase()}`
+        );
+        if (response.status === 200 || response.status === 201) {
+          const { data } = response;
+          dispatch(filterCharacterSuccess(data));
+        } else {
+          throw response;
+        }
+        resolve();
+      } catch (error) {
+        dispatch(filterCharacterFailure(error));
+        reject(error);
+      }
+    });
+  };
+};
+
+export const fetchEpisode = (url) => {
+  return (dispatch) => {
+    return new Promise(async (resolve, reject) => {
+      dispatch(fetchEpisodeStart());
+      try {
+        const response = await axios.get(
+          `${url}`
+        );
+        if (response.status === 200 || response.status === 201) {
+          const { data } = response;
+          dispatch(fetchEpisodeSuccess(data));
+        } else {
+          throw response;
+        }
+        resolve();
+      } catch (error) {
+        dispatch(fetchEpisodeFailure(error));
         reject(error);
       }
     });
